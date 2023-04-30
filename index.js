@@ -32,8 +32,8 @@ require("./config/routes")(app);
 // if (process.env.NODE_ENV == 'production') {
 //   require('./startup/prod')(app);
 // }
-// app.use(errorHandler);
-// app.use(ValidateBody);
+app.use(errorHandler);
+app.use(ValidateBody);
 
 app.get("/", (req, res) => {
 
