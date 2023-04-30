@@ -4,7 +4,7 @@ const bodyparser = require("body-parser");
 const nocache = require("nocache");
 const fileUpload = require("express-fileupload");
 //  const ValidateBody = require('./middelware/error-handler');
-// const errorHandler = require("./middelware/error-handler");
+// const errorHandler = require('./middleware/error-handler');
  const app = express();
 
 
@@ -32,8 +32,8 @@ require("./config/routes")(app);
 // if (process.env.NODE_ENV == 'production') {
 //   require('./startup/prod')(app);
 // }
-app.use(errorHandler);
-app.use(ValidateBody);
+// app.use(errorHandler);
+// app.use(ValidateBody);
 
 app.get("/", (req, res) => {
 
