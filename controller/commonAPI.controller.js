@@ -26,7 +26,7 @@ commonAPIController.notFound = async (req, res) => {
      res.send(model);
 
     } catch (e) {
-        throw new Error('Unable to fetch all  user: ' + e.message)
+        throw new Error('Unable to common api: ' + e.message)
     }
 }
 
