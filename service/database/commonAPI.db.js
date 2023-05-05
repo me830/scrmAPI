@@ -12,3 +12,4 @@ exports.pincode = async (Id) => {
     throw new Error(" Common database : " + e.message);
   }
 };
+

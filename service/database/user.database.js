@@ -1,7 +1,7 @@
 const users = require("../../model/user.model");
 
   
-
+// login user 
 exports.login = async (data) => {
   try {
      let userlogin = await users.findOne({
@@ -17,3 +17,6 @@ exports.login = async (data) => {
     throw new Error("api error at user.database.js : " + e.message);
   }
 };
+
+// add new school 
+

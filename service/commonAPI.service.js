@@ -1,4 +1,7 @@
 const commonAPIdb = require("./database/commonAPI.db");
+global.jwt = require('../config/jwt');
+  let jwt = require('jsonwebtoken');
+
  
 exports.pincode = async (Id) => {
   // console.log(params, "params");
@@ -22,3 +25,11 @@ exports.pincode = async (Id) => {
     return model;
   }
 };
+
+exports.token = async(userdata)=>{
+  return await jwt.sign(userdata,global.jwt.secretKey,{
+    algorithm:global.jwt.algorithm,
+    expiresIn:'2m'
+  });
+     
+}
