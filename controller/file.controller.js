@@ -44,7 +44,7 @@ fileController.getListFiles =  (req, res) => {
     files.forEach((file) => {
       fileInfos.push({
         name: file,
-        url: baseUrl + file,
+        url: directoryPath + file,
       });
     });
 
