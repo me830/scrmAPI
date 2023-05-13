@@ -2,11 +2,12 @@
 
 const user = require("../routes/user.routes");
 const commonAPI = require("../routes/commonAPI.routes");
+const middleware = require('../middleware/validate-request');
 // const tenant = require("../routes/pgTeant.routes");
  
 
 module.exports = function (app) {
-    app.use("/api/user",user);
+    app.use("/api/user",user,);
     // app.use("/api/tenant",tenant);
-    app.use("/api/commonAPI",commonAPI);
+    app.use("/api/commonAPI",commonAPI,middleware);
 };

@@ -29,6 +29,10 @@ const  UserSchema = new Schema({
     password: {
         type: String,
         required: true
+    } ,
+    epassword: {
+        type: String,
+        required: true
     } 
    
 });
