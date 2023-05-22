@@ -14,6 +14,16 @@ commonAPIController.pincode = async (req, res) => {
         throw new Error('Unable to fetch all  user: ' + e.message)
     }
 }
+commonAPIController.moduleInsert = async (req, res) => {
+    try {
+        let data = req.body;
+
+        const result = await commonService.moduleInsert(data);
+        res.send(result);
+    } catch (e) {
+        throw new Error('Unable to fetch all  user: ' + e.message)
+    }
+}
 
 
 // files here 
