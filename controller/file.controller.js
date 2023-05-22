@@ -2,6 +2,12 @@ const uploadFile = require("../middleware/file-uploader");
 const fs = require("fs");
 const baseUrl = "http://localhost:42001/files/";
 const fileController = {};
+const expres = require("express");
+const path = require("path");
+
+const app = expres();
+
+app.use("/images", expres.static("assets/uploadImages"));
 
 fileController.upload = async (req, res) => {
   try {
@@ -29,30 +35,48 @@ fileController.upload = async (req, res) => {
   }
 };
 
-fileController.getListFiles =  (req, res) => {
-  const directoryPath = __basedir + "/assets/uploadImages/";
-
-  fs.readdir(directoryPath, function (err, files) {
-    if (err) {
-      res.status(500).send({
-        message: "Unable to scan files!",
-      });
-    }
-
-    let fileInfos = [];
-
-    files.forEach((file) => {
-      fileInfos.push({
-        name: file,
-        url: directoryPath + file,
-      });
+fileController.getListFiles = (req, res) => {
+  let id = req.params.id;
+  if (id) {
+    res.status(200).send({
+      file_url: `http://localhost:42001/images/${id}`,
+      name: id,
     });
+  } else {
+    res.status(200).send({
+       message:'not found',
+       success:true,
+    });
+  }
 
-    res.status(200).send(fileInfos);
-  });
+
+  // const directoryPath = __basedir + "/assets/uploadImages/";
+  // const action =   "/assets/uploadImages/";
+  // const filePath = path.join(__dirname,
+  //   action).split("%20").join(" ");
+  //   let fileInfos = [];
+  //   console.log(filePath);
+
+  // fs.readdir(directoryPath, function (err, files) {
+  //   if (err) {
+  //     res.status(500).send({
+  //       message: "Unable to scan files!",
+  //     });
+  //   }
+
+  //   files.forEach((file) => {
+  //     fileInfos.push({
+  //       name: file,
+  //       url: directoryPath + file,
+
+  //     });
+  //   });
+
+  //   res.status(200).send(fileInfos);
+  // });
 };
 
-fileController.download =async (req, res) => {
+fileController.download = async (req, res) => {
   const fileName = req.params.name;
   const directoryPath = __basedir + "/assets/uploadImages/";
 
@@ -69,7 +93,7 @@ fileController.remove = async (req, res) => {
   const fileName = req.params.name;
   const directoryPath = __basedir + "/assets/uploadImages/";
 
- await fs.unlink(directoryPath + fileName, (err) => {
+  await fs.unlink(directoryPath + fileName, (err) => {
     if (err) {
       res.status(500).send({
         message: "Could not delete the file. " + err,
@@ -99,5 +123,4 @@ fileController.removeSync = (req, res) => {
   }
 };
 
- 
-module.exports = fileController
+module.exports = fileController;

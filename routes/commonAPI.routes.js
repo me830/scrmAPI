@@ -8,9 +8,13 @@ const fileController = require('../controller/file.controller');
 router.get('/pincode/:Id',
 commonAPIController.pincode
 );
+// insert module
+router.post('/addmodule',
+commonAPIController.moduleInsert
+);
  
 // get file
-router.get('/getFiles',
+router.get('/getFiles/:id',
 fileController.getListFiles
 );
 //  download file

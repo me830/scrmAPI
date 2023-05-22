@@ -20,6 +20,7 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(bodyparser.json());
+app.use('/images',express.static('assets/uploadImages'))
  
 app.use(bodyparser.json({ limit: "100mb", parameterLimit: 100000000 }));
 app.use(

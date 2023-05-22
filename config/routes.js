@@ -9,5 +9,5 @@ const middleware = require('../middleware/validate-request');
 module.exports = function (app) {
     app.use("/api/user",user,);
     // app.use("/api/tenant",tenant);
-    app.use("/api/commonAPI",commonAPI,middleware);
+    app.use("/api/commonAPI",commonAPI);
 };
